@@ -15,7 +15,7 @@ public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
-	private BigInteger numeroCartao;
+	private String numeroCartao;
 	private String senha;
 	private BigDecimal saldo;
 	
@@ -23,18 +23,18 @@ public class Cartao implements Serializable {
 		
 	}
 	
-	public Cartao(BigInteger numeroCartao, String senha, BigDecimal saldo) {
+	public Cartao(String numeroCartao, String senha, BigDecimal saldo) {
 		super();
 		this.numeroCartao = numeroCartao;
 		this.senha = senha;
 		this.saldo = saldo;
 	}
 
-	public BigInteger getNumeroCartao() {
+	public String getNumeroCartao() {
 		return numeroCartao;
 	}
 
-	public void setNumeroCartao(BigInteger numeroCartao) {
+	public void setNumeroCartao(String numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 

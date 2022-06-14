@@ -17,8 +17,8 @@ public class CartaoResource {
 	
 	@RequestMapping(method=RequestMethod.GET) 
 	public List<Cartao> listar() { 
-		Cartao cat1 = new Cartao(new BigInteger("6549873025634501"),"123",new BigDecimal(500));
-		Cartao cat2 = new Cartao(new BigInteger("6549873025634502"),"123",new BigDecimal(500));
+		Cartao cat1 = new Cartao("6549873025634501","123",new BigDecimal(500));
+		Cartao cat2 = new Cartao("6549873025634502","123",new BigDecimal(500));
 			 
 		 List<Cartao> lista = new ArrayList<>(); 
 		 lista.add(cat1); 
