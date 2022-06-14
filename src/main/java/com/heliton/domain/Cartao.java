@@ -3,8 +3,11 @@ package com.heliton.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.NoArgsConstructor;
 
@@ -14,7 +17,11 @@ public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
+	@NotEmpty
+	@NotNull	
 	private String numeroCartao;
+	@NotEmpty
+	@NotNull
 	private String senha;
 	private BigDecimal saldo;
 	

@@ -22,6 +22,9 @@ public class CartaoService {
 	}
 	
 	public Cartao insert(Cartao obj) {
+		/*Object cartaoCriado = repo.findById(obj.getNumeroCartao()) ? handleException.throwExcecaoDeValidacao(ValidacoesEnum.CARTAO_EXISTENTE)
+                : cartaoRepository.saveAndFlush(cartao);*/
+		
 		obj.setSaldo(new BigDecimal(500));
 		return repo.save(obj);
 	}
