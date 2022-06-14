@@ -2,7 +2,6 @@ package com.heliton.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

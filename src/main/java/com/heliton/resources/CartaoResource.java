@@ -1,30 +1,37 @@
 package com.heliton.resources;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.heliton.domain.Cartao;
+import com.heliton.services.CartaoService;
 
 @RestController
 @RequestMapping(value = "/cartoes") 
 public class CartaoResource {
 	
-	@RequestMapping(method=RequestMethod.GET) 
-	public List<Cartao> listar() { 
-		Cartao cat1 = new Cartao("6549873025634501","123",new BigDecimal(500));
-		Cartao cat2 = new Cartao("6549873025634502","123",new BigDecimal(500));
-			 
-		 List<Cartao> lista = new ArrayList<>(); 
-		 lista.add(cat1); 
-		 lista.add(cat2); 
-		 
-		 return lista; 
+	@Autowired
+	private CartaoService service;
+	
+	@RequestMapping(value="/{numeroCartao}",method=RequestMethod.GET) 
+	public ResponseEntity<Cartao> find(@PathVariable String numeroCartao) { 
+		Cartao obj = service.find(numeroCartao);	 
+		return ResponseEntity.ok().body(obj);
+	}
+		
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Cartao> insert( @RequestBody Cartao obj) {		
+		obj = service.insert(obj);
+		return ResponseEntity.ok(obj); 	
 	}
 
 }
