@@ -3,6 +3,7 @@ package com.heliton.services;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heliton.domain.Cartao;
@@ -11,11 +12,13 @@ import com.heliton.repositories.CartaoRepository;
 @Service
 public class CartaoService {
 	
+	@Autowired
 	private CartaoRepository repo;
 	
 	public Cartao find(String numeroCartao) {
 		Optional<Cartao> obj = repo.findById(numeroCartao);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new com.heliton.services.exceptions.ObjectNotFoundException(
+				"Objeto não encontrado! Cartão: " + numeroCartao));
 	}
 	
 	public Cartao insert(Cartao obj) {
