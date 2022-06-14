@@ -8,6 +8,8 @@ public class MiniAutorizadorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MiniAutorizadorApplication.class, args);
+		
+		System.out.println("teste");
 	}
 
 }
