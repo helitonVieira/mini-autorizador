@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.heliton.domain.Cartao;
 
 @RestController
-@RequestMapping(value = "/cartao") 
+@RequestMapping(value = "/cartoes") 
 public class CartaoResource {
 	
 	@RequestMapping(method=RequestMethod.GET) 

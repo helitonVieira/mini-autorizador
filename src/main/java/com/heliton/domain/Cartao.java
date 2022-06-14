@@ -4,10 +4,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
 public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-		
+	@Id	
 	private BigInteger numeroCartao;
 	private String senha;
 	private BigDecimal saldo;
