@@ -7,6 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.heliton.domain.Cartao;
 import com.heliton.domain.dto.TransacaoDTO;
@@ -16,6 +17,9 @@ public class TransacaoInsertValidator implements ConstraintValidator<TransacaoIn
 
 	@Autowired
 	private CartaoRepository repo;
+	
+	@Autowired
+	private BCryptPasswordEncoder  pe;
 	
 	@Override
 	public void initialize(TransacaoInsert ann) {
@@ -32,7 +36,7 @@ public class TransacaoInsertValidator implements ConstraintValidator<TransacaoIn
 			list.add(new com.heliton.exceptions.FieldMessage("valor", "SALDO_INSUFICIENTE"));
 		}
 		
-		if(objDto.getSenhaCartao() != aux.getSenha() ) {
+		if(!pe.matches(objDto.getSenhaCartao(),  aux.getSenha()) ) {
 			list.add(new com.heliton.exceptions.FieldMessage("senhaCartao", "SENHA_INVALIDA"));
 		}
 		

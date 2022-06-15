@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.heliton.domain.Cartao;
@@ -16,8 +17,8 @@ public class CartaoService {
 	@Autowired
 	private CartaoRepository repo;
 	
-	//@Autowired
-	//private BCryptPasswordEncoder  pe;
+	@Autowired
+	private BCryptPasswordEncoder  pe;
 	
 	public Cartao find(String numeroCartao) {
 		Optional<Cartao> obj = repo.findById(numeroCartao);
@@ -42,7 +43,7 @@ public class CartaoService {
 
 	
 	public Cartao fromDTO(CartaoNewDTO objDto) {
-		Cartao cart = new Cartao(objDto.getNumeroCartao(),objDto.getSenha(),objDto.getSaldo());		
+		Cartao cart = new Cartao(objDto.getNumeroCartao(),pe.encode(objDto.getSenha()),objDto.getSaldo());		
 		return cart;
 	}
 	
