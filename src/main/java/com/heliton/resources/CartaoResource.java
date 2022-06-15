@@ -1,5 +1,7 @@
 package com.heliton.resources;
 
+import java.math.BigDecimal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,9 @@ public class CartaoResource {
 	private CartaoService service;
 	
 	@RequestMapping(value="/{numeroCartao}",method=RequestMethod.GET) 
-	public ResponseEntity<Cartao> find(@PathVariable String numeroCartao) { 
+	public ResponseEntity<BigDecimal> find(@PathVariable String numeroCartao) { 
 		Cartao obj = service.find(numeroCartao);	 
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(obj.getSaldo());
 	}
 		
 	
