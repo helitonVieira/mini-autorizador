@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.NoArgsConstructor;
 
@@ -16,19 +16,15 @@ import lombok.NoArgsConstructor;
 public class Cartao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id	
-	@NotEmpty
-	@NotNull
+	@Id		
 	@Column(unique = true)
 	private String numeroCartao;
-	@NotEmpty
-	@NotNull
+	@JsonIgnore
 	private String senha;
 	
 	private BigDecimal saldo;
 	
-	public Cartao() {
-		
+	public Cartao() {		
 	}
 	
 	public Cartao(String numeroCartao, String senha, BigDecimal saldo) {

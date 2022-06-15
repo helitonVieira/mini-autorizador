@@ -1,6 +1,5 @@
 package com.heliton.services.validation;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +9,10 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.heliton.domain.Cartao;
-import com.heliton.domain.Transacao;
+import com.heliton.domain.dto.TransacaoDTO;
 import com.heliton.repositories.CartaoRepository;
 
-public class TransacaoInsertValidator implements ConstraintValidator<TransacaoInsert, Transacao> {
+public class TransacaoInsertValidator implements ConstraintValidator<TransacaoInsert, TransacaoDTO> {
 
 	@Autowired
 	private CartaoRepository repo;
@@ -23,14 +22,18 @@ public class TransacaoInsertValidator implements ConstraintValidator<TransacaoIn
 	}
 
 	@Override
-	public boolean isValid(Transacao objDto, ConstraintValidatorContext context) {
+	public boolean isValid(TransacaoDTO objDto, ConstraintValidatorContext context) {
 		
 		List<com.heliton.exceptions.FieldMessage> list = new ArrayList<>();
 		
 		Cartao aux = repo.findByNumeroCartao(objDto.getNumeroCartao());
 		
 		if(objDto.getValor().doubleValue() > aux.getSaldo().doubleValue() ) {
-			list.add(new com.heliton.exceptions.FieldMessage("numeroCartao", "SALDO_INSUFICIENTE"));
+			list.add(new com.heliton.exceptions.FieldMessage("valor", "SALDO_INSUFICIENTE"));
+		}
+		
+		if(objDto.getSenhaCartao() != aux.getSenha() ) {
+			list.add(new com.heliton.exceptions.FieldMessage("senhaCartao", "SENHA_INVALIDA"));
 		}
 		
 		if (aux.equals(null) ){

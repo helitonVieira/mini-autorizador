@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.heliton.domain.Transacao;
 
 @Repository
-public interface TransacaoRepository extends JpaRepository<Transacao, String> {
+public interface TransacaoRepository extends JpaRepository<Transacao, Integer> {
 
 }
