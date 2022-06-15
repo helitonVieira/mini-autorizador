@@ -1,21 +1,17 @@
-package com.heliton.domain;
+package com.heliton.domain.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import lombok.NoArgsConstructor;
+import com.heliton.services.validation.CartaoInsert;
 
-@Entity
-@NoArgsConstructor
-public class Cartao implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+@CartaoInsert
+public class CartaoNewDTO {
+
 	@Id	
 	@NotEmpty
 	@NotNull
@@ -26,17 +22,11 @@ public class Cartao implements Serializable {
 	private String senha;
 	private BigDecimal saldo;
 	
-	public Cartao() {
+	
+	public CartaoNewDTO() {
 		
 	}
 	
-	public Cartao(String numeroCartao, String senha, BigDecimal saldo) {
-		super();
-		this.numeroCartao = numeroCartao;
-		this.senha = senha;
-		this.saldo = saldo;
-	}
-
 	public String getNumeroCartao() {
 		return numeroCartao;
 	}
@@ -61,5 +51,4 @@ public class Cartao implements Serializable {
 		this.saldo = saldo;
 	}
 
-	
 }
