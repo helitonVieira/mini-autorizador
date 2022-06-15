@@ -24,6 +24,7 @@ public class Cartao implements Serializable {
 	@NotEmpty
 	@NotNull
 	private String senha;
+	
 	private BigDecimal saldo;
 	
 	public Cartao() {

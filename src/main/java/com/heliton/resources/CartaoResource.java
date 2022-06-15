@@ -37,5 +37,4 @@ public class CartaoResource {
 		obj = service.insert(obj);
 		return ResponseEntity.status(HttpStatus.CREATED).body(obj);
 	}
-
 }

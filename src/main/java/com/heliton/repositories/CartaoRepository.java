@@ -10,7 +10,5 @@ import com.heliton.domain.Cartao;
 public interface CartaoRepository extends JpaRepository<Cartao, String> {
 	
 	@Transactional(readOnly = true)
-	Cartao findByNumeroCartao(String numeroCartao);
-	
-	
+	Cartao findByNumeroCartao(String numeroCartao);	
 }
